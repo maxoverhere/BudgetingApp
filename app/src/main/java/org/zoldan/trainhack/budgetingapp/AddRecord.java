@@ -7,7 +7,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class AddRecord extends AppCompatActivity {
-
+//tvdccdvfrgtgr
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
