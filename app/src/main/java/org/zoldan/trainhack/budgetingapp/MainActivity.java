@@ -20,5 +20,4 @@ public class MainActivity extends AppCompatActivity {
     public void switchToViewRecords(View view){
         startActivity(new Intent(this, ViewRecords.class));
     }
-
 }

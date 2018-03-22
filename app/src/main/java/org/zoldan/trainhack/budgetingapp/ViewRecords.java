@@ -16,7 +16,7 @@ public class ViewRecords extends AppCompatActivity {
         DBHandler db = new DBHandler(this);
         TextView textView = findViewById(R.id.textView);
         List<Expense> expenses = db.getAllExpenses();
-        textView.setText(" Data in database \n");
+        textView.setText("Data in database: \n");
         for (Expense expense : expenses){
             textView.append("id: " + expense.getId() + ", type id: " + expense.getTypeId() + ", user id: " + expense.getUserId()
             + ", name: " + expense.getName() + ", amount: " + expense.getCost() + ", date: " + expense.getDate() + "\n");

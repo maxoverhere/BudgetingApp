@@ -18,9 +18,7 @@ public class Expense {
         this.date = date;
     }
 
-    public Expense(){}
-
-        public void setId(int id) {this.id = id;}
+    public void setId(int id) {this.id = id;}
     public void setTypeId(int typeId) {this.typeId = typeId;}
     public void setUserId(int userId) {this.userId = userId;}
     public void setName(String name) {this.name = name;}
