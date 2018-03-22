@@ -1,5 +1,5 @@
 package org.zoldan.trainhack.budgetingapp;
-
+///
 public class Expense {
 
     private int id;
