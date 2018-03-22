@@ -28,15 +28,6 @@ public class AddRecord extends AppCompatActivity {
                 name.getText().toString(), Double.parseDouble(amount.getText().toString()), date.getText().toString());
         db.addExpense(expense);
 
-//        Expense expense = new Expense();
-//
-//        expense.setId(0);
-//        expense.setTypeId( Integer.parseInt(type.getText().toString()));
-//        expense.setUserId( Integer.parseInt(user.getText().toString()));
-//        expense.setName(name.getText().toString());
-//        expense.setCost( Double.parseDouble(amount.getText().toString()));
-//        expense.setDate( date.getText().toString());
-
-        Toast.makeText(getApplicationContext(), "Saved to database... i thing? \n there are " + db.getExpensesCount() + " in database" , Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "Saved to database. There are " + db.getExpensesCount() + " items in database" , Toast.LENGTH_LONG).show();
     }
 }

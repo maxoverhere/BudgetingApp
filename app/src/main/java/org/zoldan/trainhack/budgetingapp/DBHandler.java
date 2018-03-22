@@ -54,7 +54,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.insert(TABLE_EXPENSES, null, values);
         db.close(); // Closing database connection
     }
-
+//
     public Expense getExpense(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -115,20 +115,10 @@ public class DBHandler extends SQLiteOpenHelper {
         String countQuery = "SELECT * FROM " + TABLE_EXPENSES;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(countQuery, null);
+        int i = cursor.getCount();
         cursor.close();
-.
-        return cursor.getCount();
+
+        return i;
     }
 
-    private boolean checkDataBase() {
-        SQLiteDatabase checkDB = null;
-        try {
-            checkDB = SQLiteDatabase.openDatabase(DB_FULL_PATH, null,
-                    SQLiteDatabase.OPEN_READONLY);
-            checkDB.close();
-        } catch (SQLiteException e) {
-            // database doesn't exist yet.
-        }
-        return checkDB != null;
-    }
 }
