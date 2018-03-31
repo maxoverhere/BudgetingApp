@@ -4,28 +4,40 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Spinner;
 import android.widget.Toast;
+import android.widget.ArrayAdapter;
+
 
 public class AddRecord extends AppCompatActivity {
-//tvdccdvfrgtgr
+
+    private Spinner category = (Spinner) findViewById(R.id.category);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_record);
-
-
     }
 
     public void addRecord(View view){
         DBHandler db = new DBHandler(this);
-        TextView type = findViewById(R.id.editText2);
-        TextView user = findViewById(R.id.editText4);
-        TextView name = findViewById(R.id.editText);
-        TextView amount = findViewById(R.id.editText3);
-        TextView date = findViewById(R.id.editText5);
 
-        Expense expense = new Expense(0, Integer.parseInt(type.getText().toString()), Integer.parseInt(user.getText().toString()),
-                name.getText().toString(), Double.parseDouble(amount.getText().toString()), date.getText().toString());
+        String[] items = new String[]{"Food", "Transport", "Socialising", "Course Material", "Clothes"};
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
+        category.setAdapter(adapter);
+
+        TextView details = findViewById(R.id.details);
+        TextView amount = findViewById(R.id.amountSpent);
+        TextView date = findViewById(R.id.date);
+
+        Expense expense = new Expense(0,
+                /* Category*/ category.getSelectedItem().toString(),
+                /* Details */ details.getText().toString(),
+                /* Amount */ Double.parseDouble(amount.getText().toString()),
+                /* Date */ date.getText().toString()
+        );
+
         db.addExpense(expense);
 
         Toast.makeText(getApplicationContext(), "Saved to database. There are " + db.getExpensesCount() + " items in database" , Toast.LENGTH_LONG).show();

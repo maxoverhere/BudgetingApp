@@ -3,8 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/BudgetingApp.iml" filepath="$PROJECT_DIR$/BudgetingApp.iml" />
-      <module fileurl="file://C:\Users\User\Documents\GitHub\BudgetingApp\BudgetingApp.iml" filepath="C:\Users\User\Documents\GitHub\BudgetingApp\BudgetingApp.iml" />
-      <module fileurl="file://C:\Users\User\Documents\GitHub\BudgetingApp\app\app.iml" filepath="C:\Users\User\Documents\GitHub\BudgetingApp\app\app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
 </project>

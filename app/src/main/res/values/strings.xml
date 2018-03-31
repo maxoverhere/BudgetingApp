@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">BudgetingApp</string>
+    <string name="date">Date</string>
+    <string name="amount_spent">Amount spent</string>
+    <string name="name_of_expense">Name of expense</string>
+    <string name="save">SAVE</string>
 </resources>

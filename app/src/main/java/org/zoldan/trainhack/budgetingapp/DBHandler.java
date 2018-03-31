@@ -19,9 +19,8 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String TABLE_EXPENSES = "expenses";
 
     private static final String KEY_ID = "id";
-    private static final String KEY_TYPE_ID = "type_id";
-    private static final String KEY_USER_ID = "user_id";
-    private static final String KEY_NAME = "name";
+    private static final String KEY_CATEGORY = "category";
+    private static final String KEY_DETAILS = "details";
     private static final String KEY_COST = "cost";
     private static final String KEY_DATE = "date";
     
@@ -31,10 +30,11 @@ public class DBHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATE_CONTACTS_TABLE = "CREATE TABLE " + TABLE_EXPENSES + "(" + KEY_ID + " INTEGER PRIMARY KEY,"
-                + KEY_TYPE_ID + " INTEGER," + KEY_USER_ID + " INTEGER," + KEY_NAME + " TEXT," + KEY_COST + " DOUBLE," +
-                KEY_DATE + " STRING" + ")";
+                + KEY_CATEGORY + " STRING," + KEY_DETAILS + " STRING," + KEY_COST + " DOUBLE," + KEY_DATE + " STRING" + ")";
+
         db.execSQL(CREATE_CONTACTS_TABLE);
     }
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_EXPENSES);
@@ -45,28 +45,28 @@ public class DBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(KEY_TYPE_ID, expense.getTypeId());
-        values.put(KEY_USER_ID, expense.getUserId());
-        values.put(KEY_NAME, expense.getName());
+        values.put(KEY_ID, expense.getId());
+        values.put(KEY_CATEGORY, expense.getCategory());
+        values.put(KEY_DETAILS, expense.getDetails());
         values.put(KEY_COST, expense.getCost());
         values.put(KEY_DATE, expense.getDate());
 
         db.insert(TABLE_EXPENSES, null, values);
         db.close(); // Closing database connection
     }
-//
+
     public Expense getExpense(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.query(TABLE_EXPENSES, new String[]{KEY_ID, KEY_TYPE_ID, KEY_USER_ID,
-                        KEY_NAME, KEY_COST, KEY_DATE}, KEY_ID + "=?",
+        Cursor cursor = db.query(TABLE_EXPENSES, new String[]{KEY_ID, KEY_CATEGORY, KEY_DETAILS,
+                        KEY_COST, KEY_DATE}, KEY_ID + "=?",
                 new String[]{String.valueOf(id)}, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
 
         Expense contact = new Expense(Integer.parseInt(cursor.getString(0)),
-                Integer.parseInt(cursor.getString(1)),Integer.parseInt(cursor.getString(2)),
-                cursor.getString(3), Double.parseDouble(cursor.getString(4)), cursor.getString(5));
+                cursor.getString(1),cursor.getString(2),
+                Double.parseDouble(cursor.getString(4)), cursor.getString(5));
 
         return contact;
     }
@@ -79,8 +79,8 @@ public class DBHandler extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             do {
-                Expense expense = new Expense(Integer.parseInt(cursor.getString(0)), Integer.parseInt(cursor.getString(1)),
-                        Integer.parseInt(cursor.getString(2)),cursor.getString(3),
+                Expense expense = new Expense(Integer.parseInt(cursor.getString(0)),
+                        cursor.getString(1),cursor.getString(2),
                         Double.parseDouble(cursor.getString(4)), cursor.getString(5));
 
                 expenseList.add(expense);
@@ -94,9 +94,8 @@ public class DBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(KEY_TYPE_ID, expense.getTypeId());
-        values.put(KEY_USER_ID, expense.getUserId());
-        values.put(KEY_NAME, expense.getName());
+        values.put(KEY_CATEGORY, expense.getCategory());
+        values.put(KEY_DETAILS, expense.getDetails());
         values.put(KEY_COST, expense.getCost());
         values.put(KEY_DATE, expense.getDate());
 
